@@ -1,0 +1,49 @@
+body{
+    display: grid;
+    place-items: center;
+    height: 100vh;
+    margin: 0;
+    background-color: rgb(25, 25, 25);
+}
+
+#app{
+    margin: 0 auto;
+}
+
+#editor, #preview{
+    width: 45vw;
+    height: 80vh;
+    margin: 1rem;
+    padding: 1rem;
+    box-sizing: border-box;
+    border: 4px solid #ffffff;
+    border-radius: 5px;
+    line-height: 1.5;
+    overflow-y: auto;
+    background-color: rgb(9, 9, 9);
+}
+
+#editor{
+    resize: none;
+    font-family: monospace;
+    font-size: 18px;
+    color: rgb(50, 180, 50);
+}
+
+#preview{
+    font-family:'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    font-size: 20px;
+    color: rgb(255, 255, 255);
+}
+
+#editor-title, #preview-title{
+    text-align: center;
+    color: #ffffff;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}
+
+#by-me{
+    text-align: center;
+    color: #888888;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+}

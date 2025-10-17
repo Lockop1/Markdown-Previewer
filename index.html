@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <title>Markdown Previewer</title>
+    <link rel="stylesheet" href="./style.css">
+</head>
+
+
+<body>
+    <div id="app"></div>
+    <!-- React -->
+    <script crossorigin src="https://unpkg.com/react@17/umd/react.development.js"></script>
+    <script crossorigin src="https://unpkg.com/react-dom@17/umd/react-dom.development.js"></script>
+    <!-- Markdown -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/marked/12.0.2/marked.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/dompurify/3.1.7/purify.min.js"></script>
+
+    <!-- Babel -->
+    <script src="https://unpkg.com/@babel/standalone/babel.min.js"></script>
+    <script type="text/babel">
+        function App(){
+            const [text, setText] = React.useState('# H1 Heading\n ## H2 heading\n\n **bold text**\n *italicized text*\n ***bold and italicized text***\n\n ~~strikethrough~~\n\n > blockquote\n\n - Unordered list item 1\n - Unordered list item 2\n   - Nested unordered list item 1\n   - Nested unordered list item 2\n     - Double nested unordered list item 1\n     - Double nested unordered list item 2\n\n 1. Ordered list item 1\n 1. Ordered list item 2\n\n `inline code`\n\n```\n// code block\nfunction add(a, b) {\n return a + b;\n}\n```\n\n [link](https://www.freecodecamp.org)\n ![alt text](https://www.freecodecamp.org/favicon.ico)\n\n Table:\n | Header 1 | Header 2 | Header 3 |\n | -------- | -------- | -------- |\n | Row 1 Col 1 | Row 1 Col 2 | Row 1 Col 3 |\n | Row 2 Col 1 | Row 2 Col 2 | Row 2 Col 3 |\n | Row 3 Col 1 | Row 3 Col 2 | Row 3 Col 3 |');
+
+            marked.setOptions({
+                gfm: true,
+                breaks: true
+            });
+
+            const rawHTML = marked.parse(text);
+            const safeHTML = DOMPurify.sanitize(rawHTML);
+            return(
+                <div>
+                    <h1 id="editor-title">Editor</h1>
+                    <textarea id="editor" value={text} onChange={(e) => setText(e.target.value)} placeholder="Type markdown here"></textarea>
+                    <h1 id="preview-title">Preview</h1>
+                    <div dangerouslySetInnerHTML={{__html: safeHTML}}  id="preview"></div>
+                    <p id="by-me">By: Anthony Newsome</p>
+                </div>
+            );
+        }
+
+        ReactDOM.render(<App />, document.getElementById('app'));
+    </script>
+
+
+
+    <!-- FCC test menu -->
+    <script src="https://cdn.freecodecamp.org/testable-projects-fcc/v1/bundle.js"></script>
+</body>
+
+</html>
